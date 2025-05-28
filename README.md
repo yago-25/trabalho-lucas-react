@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+# E-commerce Admin Interface
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é um projeto de interface administrativa para um e-commerce, desenvolvido em React, que permite o gerenciamento completo de produtos, categorias e visualização de vendas.
 
-## Available Scripts
+## 🚀 Tecnologias Utilizadas
 
-In the project directory, you can run:
+- **React** (v18.2.0) - Framework principal
+- **Chakra UI** (v2.8.2) - Sistema de design para interface moderna e responsiva
+- **React Router DOM** (v6.22.0) - Gerenciamento de rotas
+- **Axios** (v1.6.7) - Cliente HTTP para comunicação com a API
+- **React Icons** (v5.5.0) - Biblioteca de ícones
+- **Framer Motion** (v11.0.3) - Animações suaves
 
-### `npm start`
+## 📋 Funcionalidades
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1. Gerenciamento de Produtos
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Listagem em tabela com imagens e detalhes
+- Criação, edição e exclusão de produtos
+- Upload de imagens via URL
+- Integração com categorias
+- Controle de estoque e preços
 
-### `npm test`
+### 2. Gerenciamento de Categorias
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Lista organizada de categorias
+- Criação, edição e exclusão de categorias
+- Interface simples e intuitiva
+- Badges visuais para melhor identificação
 
-### `npm run build`
+### 3. Visualização de Vendas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Histórico detalhado de vendas
+- Detalhes expandíveis por venda
+- Informações de cliente, data e produtos
+- Cálculo automático de totais
+- Opção de exclusão de registros
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🎨 Estilização
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+O projeto utiliza o Chakra UI como sistema de design principal, oferecendo:
 
-### `npm run eject`
+- Design responsivo e moderno
+- Tema claro/escuro
+- Componentes pré-estilizados e customizáveis
+- Sistema de grid flexível
+- Animações e transições suaves
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🔌 Conexão com Backend
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+A comunicação com o backend é gerenciada através do arquivo `api.js`, utilizando Axios:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```javascript
+import axios from "axios";
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+export const api = axios.create({
+  baseURL: "https://backend-completo.vercel.app",
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+});
+```
 
-## Learn More
+### Endpoints Principais:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Produtos
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- GET `/app/produtos/:usuario` - Lista produtos
+- POST `/app/produtos` - Cria produto
+- PUT `/app/produtos` - Atualiza produto
+- DELETE `/app/produtos` - Remove produto
 
-### Code Splitting
+#### Categorias
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- GET `/app/categorias` - Lista categorias
+- POST `/app/categorias` - Cria categoria
+- PUT `/app/categorias` - Atualiza categoria
+- DELETE `/app/categorias` - Remove categoria
 
-### Analyzing the Bundle Size
+#### Vendas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- GET `/app/venda` - Lista vendas
+- DELETE `/app/venda` - Remove venda
 
-### Making a Progressive Web App
+## 🔒 Autenticação
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+O sistema utiliza autenticação via token JWT:
 
-### Advanced Configuration
+- Token armazenado no localStorage
+- Enviado automaticamente em todas as requisições
+- Rotas protegidas no frontend
+- Redirecionamento automático para login quando necessário
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🚀 Como Executar
 
-### Deployment
+1. Clone o repositório
+2. Instale as dependências:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+npm install
+```
 
-### `npm run build` fails to minify
+3. Execute o projeto:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm start
+```
+
+4. Acesse `http://localhost:3000`
+
+## ⚙️ Estrutura do Projeto
+
+```
+src/
+  ├── components/      # Componentes React
+  ├── services/        # Configuração de serviços (API)
+  ├── assets/          # Recursos estáticos
+  └── App.js          # Componente principal e rotas
+```
